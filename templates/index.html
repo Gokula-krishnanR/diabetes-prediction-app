@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🩺 Diabetes Health Predictor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <nav><h1>🩺 Diabetes Predictor</h1></nav>
+  <main>
+    <form action="/predict" method="POST" class="card">
+      <h2>Enter Health Information</h2>
+      <div class="grid">
+        <input name="Pregnancies" placeholder="Pregnancies" required>
+        <input name="Glucose" placeholder="Glucose" required>
+        <input name="BloodPressure" placeholder="Blood Pressure" required>
+        <input name="SkinThickness" placeholder="Skin Thickness" required>
+        <input name="Insulin" placeholder="Insulin" required>
+        <input name="BMI" placeholder="BMI" required>
+        <input name="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree" required>
+        <input name="Age" placeholder="Age" required>
+      </div>
+      <button type="submit">Predict Now</button>
+    </form>
+
+    {% if result %}
+    <div class="result {{ 'positive' if result == 'Diabetic' else 'negative' }}">
+      <h3>{{ result }}</h3>
+      <p>Probability: {{ probability }}</p>
+    </div>
+    {% elif error %}
+    <div class="result error"><p>{{ error }}</p></div>
+    {% endif %}
+  </main>
+</body>
+</html>
